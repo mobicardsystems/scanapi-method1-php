@@ -304,10 +304,10 @@ Performance Tips:
  *   Implement client-side validation first
  *   Cache successful token responses
  *   Implement retry logic with exponential backoff
- *   Monitor card_confidence_score for quality control
- *   Use card_risk_information for fraud detection
- *   Use card_risk_information.card_risk_score for fraud detection
- *   Use card_exif_information.card_exif_is_instant_photo_flag for fraud control
- *   Use card_exif_information.card_exif_tamper_flag for fraud control
+ *   Monitor **card_confidence_score** for quality control
+ *   Use **card_risk_information** for fraud detection
+ *   Use **card_risk_information.card_risk_score** for fraud detection
+ *   Use **card_exif_information.card_exif_is_instant_photo_flag** for fraud control
+ *   Use **card_exif_information.card_exif_tamper_flag** for fraud control
  *   Handle error status codes appropriately especially 250 and 430 for smoother flow
 
