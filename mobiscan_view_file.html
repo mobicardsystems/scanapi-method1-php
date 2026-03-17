@@ -1096,67 +1096,51 @@
 
 
 
-        // ================= CLOSE MODAL =================
-        $('#close_modal_btn').on('click', function () {
-            
-            // 1. Detect which tab is currently active
-            let activeTabId = $('.nav-link.active').attr('href'); // e.g., "#scan_tab" or "#upload_tab"
-
-            if (activeTabId) {
-                
-                // Save preference to restore this tab after reload
-                localStorage.setItem('active_tab', activeTabId);
-                
-            }
-
-            
-            // 2. Only reload if the Upload Card tab is active
-            if (activeTabId === '#upload_tab') {
-                
-                // Reload the page
-                location.reload();
-                
-                // Optional: keep your existing timing logic
-                setTimeout(showLockScreen, 10);
-                
-            } else {
-                
-                // For any other tab (e.g., #scan_tab), just proceed with normal close behavior
-                // No reload, no localStorage change
-                // If you have other close logic, add it here
-
-                stopCamera();
-                cleanupAllTimers();
-                showLockScreen();
-                                
-                console.log('Closing without reload - active tab:', activeTabId);
-                
-            }
-        });
 
 
-        // ================= RESTORE TAB ON PAGE LOAD =================
-        $(document).ready(function() {
-            const savedTab = localStorage.getItem('active_tab');
-            
-            if (savedTab) {
-                // Remove active/show classes from all tabs and panes
-                $('.nav-link').removeClass('active');
-                $('.tab-pane').removeClass('active show');
-                
-                // Activate the saved tab link
-                $(`.nav-link[href="${savedTab}"]`).addClass('active');
-                
-                // Activate the corresponding tab pane
-                $(savedTab).addClass('active show');
-                
-                // Optional: Use Bootstrap's native tab method for better event handling
-                // $(`.nav-link[href="${savedTab}"]`).tab('show');
-                
-                // Clean up: remove the saved preference after applying it
-                localStorage.removeItem('active_tab');
-            }
-        });
+		// ================= CLOSE MODAL =================
+		$('#close_modal_btn').on('click', function () {
+			
+			// 1. Detect which tab is currently active
+			let activeTabId = $('.nav-link.active').attr('href'); // e.g., "#scan_tab" or "#upload_tab"
+			
+			// 2. Save the active tab ID to localStorage
+			if (activeTabId) {
+				localStorage.setItem('active_tab', activeTabId);
+			}
+
+			// 3. Reload the page
+			location.reload();
+			
+			// Optional: keep your existing timing logic if needed
+			setTimeout(showLockScreen, 10);
+		});
+
+
+		// ================= RESTORE TAB ON PAGE LOAD =================
+		$(document).ready(function() {
+			const savedTab = localStorage.getItem('active_tab');
+			
+			if (savedTab) {
+				// Remove active/show classes from all tabs and panes
+				$('.nav-link').removeClass('active');
+				$('.tab-pane').removeClass('active show');
+				
+				// Activate the saved tab link
+				$(`.nav-link[href="${savedTab}"]`).addClass('active');
+				
+				// Activate the corresponding tab pane
+				$(savedTab).addClass('active show');
+				
+				// Optional: Use Bootstrap's native tab method (more robust for events)
+				// $(`.nav-link[href="${savedTab}"]`).tab('show');
+				
+				// Clean up: remove the saved preference after applying it
+				localStorage.removeItem('active_tab');
+			}
+		});
+
+
 
 
 
