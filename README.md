@@ -97,6 +97,7 @@ JSON Success Response
     "status_message": "SUCCESS",
     "card_scan_request_id": "18678121768809362",
     "mobicard_txn_reference": "327005622",
+    "mobicard_token_id": "325026456",
     "timestamp": "2026-01-19 07:56:02",
     "card_information": {
         "card_number": "5173350006475601",
